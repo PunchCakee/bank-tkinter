@@ -4,7 +4,7 @@ import yaml
 from yaml import Loader
 
 
-class Bank():
+class Bank:
     def withdraw(self):
         with open('config.yaml','r') as file:
             amount = float(entry_withdraw.get())

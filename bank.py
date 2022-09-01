@@ -42,6 +42,15 @@ class Bank:
         except ValueError as err:
             messagebox.showwarning(title="warning",message="only numbers are allowed, it looks like you tried to enter a string or you left it empty.")
             print(err)
+        
+    def clear(self):
+        with open('config.yaml','r') as file:
+            data = yaml.load(file, Loader=Loader)
+        with open('config.yaml','w') as file:
+            data['balance'] = 0.0
+            yaml.dump(data,file)
+        messagebox.showinfo(title="balance clear",message=f"your balance has been cleared and is now set to {data['balance']}")
+            
 
 
 #----------------------------------------------------------------------------------#
@@ -61,8 +70,10 @@ show_balance.pack()
 
 if devmode == True:
     Label(window,text="Devmode is enabled",font=('bold',20)).pack()
-    devmode_button = Button(window,text="devmode add",command=Bank().add)
+    devmode_button = Button(window,text="add",command=Bank().add)
+    devmode_button_clear = Button(window,text="clear balance",command=Bank().clear)
     devmode_button.pack()
+    devmode_button_clear.pack()
 
 window.resizable(False, False)
 window.mainloop()

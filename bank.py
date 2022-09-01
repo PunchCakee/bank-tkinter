@@ -1,4 +1,3 @@
-import string
 from tkinter import *
 from tkinter import messagebox
 import yaml
